@@ -6,4 +6,4 @@ jobs:
   receive-dispatch:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ toJson(github.event.client_payload) }}
+      - run: echo ${{ github.event.client_payload.released_ref }}; echo ${{ github.event.client_payload.released_sha }}
