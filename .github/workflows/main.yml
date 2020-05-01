@@ -6,7 +6,4 @@ jobs:
   receive-dispatch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.client_payload.ref }}
       - run: echo ${{ toJson(github.event.client_payload) }}
