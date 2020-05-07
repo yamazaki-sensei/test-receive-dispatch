@@ -1,9 +1,19 @@
-name: Receive Repository Dispatch
+name: Create pull request to update prototype
 on: 
   repository_dispatch:
     types: [release-created]
 jobs:
-  receive-dispatch:
+  create-updating-pullrequest:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.client_payload.released_ref }}; echo ${{ github.event.client_payload.released_sha }}
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Make difference
+      run: uuidgen > uuid.txt
+    - name: Create pull request
+      uses: peter-evans/create-pull-request@v2.7.1
+      with:
+        commit-message: Update prototype to ${{ github.event.client_payload.released_ref }}
+        title: Update prototype to ${{ github.event.client_payload.released_ref }}
+        branch: bot/update-prototype-${{ github.event.client_payload.released_ref }}
+        base : develop
