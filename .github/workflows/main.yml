@@ -16,4 +16,4 @@ jobs:
         commit-message: Update prototype to ${{ github.event.client_payload.released_ref }}
         title: Update prototype to ${{ github.event.client_payload.released_ref }}
         branch: bot/update-prototype-${{ github.event.client_payload.released_ref }}
-        base : develop
+        base : master
